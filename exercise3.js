@@ -1,0 +1,85 @@
+// Start the program  
+console.log("Need help with calculation?");  
+  
+// Get the user's response  
+const userResponse = prompt("Enter 'Yes' if you need help with calculation:");  
+  
+// Execute different actions based on the user's response  
+if (userResponse.toLowerCase() === "yes") {  
+    // Ask the user to enter their full name  
+    const userName = prompt("Enter your full name:");  
+      
+    // Initialize the total score to 0  
+    let total = 0;  
+      
+    // Loop to collect grades for each unit  
+    for (let unit = 1; unit <= 4; unit++) {  
+        // Prompt the user to enter the grade  
+        const grade = prompt(`Enter grade for unit ${unit}:`);  
+          
+        // Ensure the grade is a valid number and add it to the total  
+        if (!isNaN(grade) && isFinite(grade)) {  
+            total += parseFloat(grade);  
+        } else {  
+            console.log("Invalid grade. Please enter a valid number.");  
+            // You may want to add error handling logic here, such as asking for input again  
+        }  
+    }  
+      
+    // Calculate the average score  
+    const average = total / 4;  
+      
+    // Output the total score and average  
+    console.log(`Total: ${total}, Average: ${average}`);  
+      
+    // Thank the user  
+    console.log("Thank you");  
+} else {  
+    // Thank the user for using the program  
+    console.log("Thank you for using the program");  
+}  
+  
+// End of the program (in JavaScript, the program ends when it reaches the end of the script)
+function insertBook() {  
+    const readline = require('readline');  
+    const rl = readline.createInterface({  
+      input: process.stdin,  
+      output: process.stdout  
+    });  
+    
+    rl.question('Enter book title: ', (title) => {  
+      rl.question('Enter book author: ', (author) => {  
+        rl.question('Enter book ISBN: ', (ISBN) => {  
+          rl.question('Enter book context: ', (context) => {  
+            rl.close();  
+            db.run('INSERT INTO books (title, author, ISBN, context) VALUES (?, ?, ?, ?)', [title, author, ISBN, context], (err) => {  
+              if (err) {  
+                return console.error(err.message);  
+              }  
+              console.log(`Book added successfully with rowid: ${this.lastID}`);  
+              // After adding 3 books, list all records  
+              if (db.totalChanges === 3) {  
+                listBooks();  
+              } else {  
+                insertBook(); // Continue to insert more books  
+              }  
+            });  
+          });  
+        });  
+      });  
+    });  
+  }  
+    
+  // Call the function to start inserting books  
+  insertBook();
+  function listBooks() {  
+    db.all('SELECT * FROM books', [], (err, rows) => {  
+      if (err) {  
+        return console.error(err.message);  
+      }  
+      rows.forEach((row) => {  
+        console.log(`Title: ${row.title}, Author: ${row.author}, ISBN: ${row.ISBN}, Context: ${row.context}`);  
+      });  
+    });  
+  }
+  console.log('Please use system commands to get your Mac and IP address.');
